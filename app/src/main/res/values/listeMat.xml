@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="MatriculeType">
+        <item>Matricule 1</item>
+        <item>Matricule 2</item>
+        <item>Matricule 3</item>
+        <item>Matricule 4</item>
+        <item>Matricule 5</item>
+
+    </string-array>
+</resources>

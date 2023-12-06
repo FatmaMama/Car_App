@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +19,24 @@
         android:theme="@style/Theme.Car_App"
         tools:targetApi="31">
         <activity
+            android:name=".DateRdvActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChoixAgence"
+            android:exported="false" />
+        <activity
+            android:name=".RDVActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ValidAddCar"
+            android:exported="false" />
+        <activity
+            android:name=".OPTActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddVoiture"
+            android:exported="false" />
+        <activity
             android:name=".Accueil"
             android:exported="false" />
         <activity
@@ -20,9 +44,6 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Test"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
