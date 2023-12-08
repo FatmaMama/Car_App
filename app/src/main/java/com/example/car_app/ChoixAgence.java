@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -16,11 +15,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import io.grpc.Server;
-
 public class ChoixAgence extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap myMap;
-    TextView agencefav,service;
+    TextView agencefav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +25,6 @@ public class ChoixAgence extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_choix_agence);
 
         agencefav=findViewById(R.id.agencefav);
-        service=findViewById(R.id.service);
-        Intent data = getIntent();
-        String serv = data.getStringExtra("Nom").toString();
-        service.setText(serv);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(ChoixAgence.this);
@@ -48,15 +41,12 @@ public class ChoixAgence extends AppCompatActivity implements OnMapReadyCallback
         LatLng ag1 = new LatLng(35.93687642505922, 10.563354411142015);
         LatLng ag2 = new LatLng(35.79442460273389,  10.83526601397979);
         LatLng ag3 = new LatLng(35.56239491686486,  11.038513070646404);
-        LatLng ag4 = new LatLng(36.4983821364727,  10.803268937290119);
         myMap.addMarker(new MarkerOptions().position(ag1).title("Agence Hammam Sousse"));
         myMap.addMarker(new MarkerOptions().position(ag2).title("Agence Monastir "));
         myMap.addMarker(new MarkerOptions().position(ag3).title("Agence Mahdia"));
-        myMap.addMarker(new MarkerOptions().position(ag4).title("Agence Nabeul"));
         myMap.moveCamera(CameraUpdateFactory.newLatLng(ag1));
         myMap.moveCamera(CameraUpdateFactory.newLatLng(ag2));
         myMap.moveCamera(CameraUpdateFactory.newLatLng(ag3));
-        myMap.moveCamera(CameraUpdateFactory.newLatLng(ag4));
 
         myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ag1, zoomLevel));
 
