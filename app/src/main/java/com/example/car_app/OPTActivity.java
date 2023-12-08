@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +28,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class OPTActivity extends AppCompatActivity {
- EditText phone,code ;
+    EditText input_code1, input_code2, input_code3, input_code4, input_code5, input_code6;
  Button btnlogin ;
  String phoneNumber;
     Long timeoutSeconds = 60L;
@@ -40,13 +42,18 @@ public class OPTActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optactivity);
 
-        phone=findViewById(R.id.phone);
-        code=findViewById(R.id.opt);
+        input_code1 = findViewById(R.id.input_code1);
+        input_code2 = findViewById(R.id.input_code2);
+        input_code3 = findViewById(R.id.input_code3);
+        input_code4 = findViewById(R.id.input_code4);
+        input_code5 = findViewById(R.id.input_code5);
+        input_code6 = findViewById(R.id.input_code6);
+
         btnlogin=findViewById(R.id.btnlogin);
         progressBar=findViewById(R.id.progress);
         resendOtpTextView = findViewById(R.id.resendopt);
 
-        phoneNumber = getIntent().getExtras().getString("phone");
+        /*phoneNumber = getIntent().getExtras().getString("phone");
         phone.setText(phoneNumber);
         sendOtp(phoneNumber,false);
 
@@ -58,12 +65,12 @@ public class OPTActivity extends AppCompatActivity {
 
         resendOtpTextView.setOnClickListener((v)->{
             sendOtp(phoneNumber,true);
-        });
+        });*/
 
     }
 
     void sendOtp(String phoneNumber,boolean isResend){
-        startResendTimer();
+        //startResendTimer();
         setInProgress(true);
         PhoneAuthOptions.Builder builder =
                 PhoneAuthOptions.newBuilder(mAuth)
@@ -128,7 +135,7 @@ public class OPTActivity extends AppCompatActivity {
 
     }
 
-    void startResendTimer(){
+    /*void startResendTimer(){
         resendOtpTextView.setEnabled(false);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -145,5 +152,98 @@ public class OPTActivity extends AppCompatActivity {
                 }
             }
         },0,1000);
+    }*/
+
+    void setupOtpInputs(){
+        input_code1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    input_code2.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        input_code2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    input_code3.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        input_code3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    input_code4.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        input_code4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    input_code5.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        input_code5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    input_code6.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }

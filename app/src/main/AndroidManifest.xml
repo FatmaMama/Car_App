@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Car_App"
         tools:targetApi="31">
         <activity
+            android:name=".OtpActivity"
+            android:exported="false" />
+        <activity
             android:name=".DateRdvActivity"
             android:exported="false" />
         <activity
@@ -45,9 +48,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -57,6 +58,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBLK51FMbwC4SxnC_hRtuu9I9yzNR9ELpY" />

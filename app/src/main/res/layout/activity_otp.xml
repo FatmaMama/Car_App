@@ -23,45 +23,24 @@
         android:id="@+id/send_text"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Entrez le code envoyé à:"
+        android:text="Entrez le code envoyé à"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <!--<EditText
-        android:id="@+id/phone"
+    <TextView
+        android:id="@+id/phone_text"
         android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/edittextview"
-        android:drawableLeft="@drawable/baseline_phone_24"
-        android:drawablePadding="8dp"
-        android:hint="Phone"
-        android:padding="8dp"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/send_text" />
 
-    <EditText
-        android:id="@+id/opt"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/edittextview"
-        android:drawableLeft="@drawable/baseline_phone_24"
-        android:drawablePadding="8dp"
-        android:hint="Code"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
--->
     <LinearLayout
         android:id="@+id/l_layout"
         android:layout_width="match_parent"
@@ -72,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/send_text"
+        app:layout_constraintTop_toBottomOf="@+id/phone_text"
         >
         <EditText
             android:id="@+id/input_code1"
@@ -148,7 +127,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnlogin"
+        android:id="@+id/btn_verif"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
@@ -161,6 +140,18 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/l_layout" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/l_layout"
+        app:layout_constraintVertical_bias="0.117" />
 
     <TextView
         android:id="@+id/resendopt"
@@ -176,14 +167,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnlogin" />
 
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resendopt" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
