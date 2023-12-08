@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Car_App</string>
+    <string name="default_mat">Select Matricule</string>
+    <string name="desc">Ajouter Votre Kia pour profiter des services personnalisés </string>
 </resources>
