@@ -16,19 +16,27 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class OtpActivity extends AppCompatActivity {
     EditText input_code1, input_code2, input_code3, input_code4, input_code5, input_code6;
-    TextView phone_text;
+    TextView phone_text, resendOtp;
     ProgressBar progressBar;
     Button verifBtn;
     String verificationId;
-    
     Boolean valid=true;
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +52,14 @@ public class OtpActivity extends AppCompatActivity {
         input_code5 = findViewById(R.id.input_code5);
         input_code6 = findViewById(R.id.input_code6);
         setupOtpInputs();
-        
+
+        resendOtp = findViewById(R.id.resendopt);
+
         progressBar = findViewById(R.id.progressBar);
         verifBtn = findViewById(R.id.btn_verif);
         verificationId = getIntent().getStringExtra("verificationId");
 
-        
+        db = FirebaseFirestore.getInstance();
         verifBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,8 +86,48 @@ public class OtpActivity extends AppCompatActivity {
                 }
             }
         });
+
+        resendOtp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendVerificationCode(getIntent().getStringExtra("telephone"));
+            }
+        });
         
     }
+
+    private void sendVerificationCode(String phoneNumber) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
+                        .setPhoneNumber("+216"+phoneNumber)
+                        .setTimeout(30L, TimeUnit.SECONDS)
+                        .setActivity(this)
+
+                        .setCallbacks(mCallbacks)
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+            mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        @Override
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
+
+        }
+
+        @Override
+        public void onVerificationFailed(@NonNull FirebaseException e) {
+            Toast.makeText(OtpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCodeSent(@NonNull String newVerificationId,
+                               @NonNull PhoneAuthProvider.ForceResendingToken token) {
+            verificationId = newVerificationId;
+            Toast.makeText(OtpActivity.this, "Code envoyé", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     void setupOtpInputs(){
         input_code1.addTextChangedListener(new TextWatcher() {
@@ -184,18 +234,32 @@ public class OtpActivity extends AppCompatActivity {
 
     private void signinByCredentials(PhoneAuthCredential credential) {
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        Map<String, Object> userP = new HashMap<>();
+        userP.put("nom", getIntent().getStringExtra("nom"));
+        userP.put("prenom", getIntent().getStringExtra("prenom"));
+        userP.put("telephone", getIntent().getStringExtra("telephone"));
         fAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 verifBtn.setVisibility(View.VISIBLE);
                 if(task.isSuccessful()){
-                    Toast.makeText(OtpActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), AddVoiture.class));
+                    FirebaseUser user = task.getResult().getUser();
+                    db.collection("Users").document(user.getUid()).set(userP).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(OtpActivity.this, "Vous êtes connecté", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), Accueil.class));
+                            }
+                        }
+                    });
                 }else {
                     Toast.makeText(OtpActivity.this, "le code est invalide", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
+
 }
