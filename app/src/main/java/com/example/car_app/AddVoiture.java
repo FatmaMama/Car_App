@@ -47,6 +47,7 @@ public class AddVoiture extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), ValidAddCar.class);
                                 intent.putExtra("modele", document.getData().get("modele").toString());
                                 intent.putExtra("vin", document.getData().get("vin").toString());
+                                intent.putExtra("immatriculation", document.getData().get("immatriculation").toString());
                                 startActivity(intent);
                             }
                         }

@@ -44,6 +44,7 @@ public class ValidAddCar extends AppCompatActivity {
         Map<String, Object> car = new HashMap<>();
         car.put("vin", getIntent().getStringExtra("vin"));
         car.put("modele", getIntent().getStringExtra("modele"));
+        car.put("immatriculation", getIntent().getStringExtra("immatriculation"));
         car.put("kilometrage", kilometrage.getText().toString());
         car.put("user", currentUser.getUid());
         ajout_btn.setOnClickListener(new View.OnClickListener() {
