@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 startActivity(new Intent(MainActivity.this, Accueil.class));
+
             }
         },SPLASH_SCREEN);
 
