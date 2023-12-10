@@ -52,6 +52,7 @@ public class ValidRDV extends AppCompatActivity {
 
         retour.setOnClickListener(v->{
             startActivity(new Intent(ValidRDV.this,DateRdvActivity.class));
+            finish();
         });
 
         valider.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +79,7 @@ public class ValidRDV extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(ValidRDV.this, "Rendez_vous Ajouté", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), Accueil.class));
+                    finish();
                 }else {
                     Toast.makeText(ValidRDV.this, "Ajout échoué", Toast.LENGTH_SHORT).show();
                 }

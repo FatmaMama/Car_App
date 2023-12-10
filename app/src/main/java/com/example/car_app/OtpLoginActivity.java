@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class OtpActivity extends AppCompatActivity {
+public class OtpLoginActivity extends AppCompatActivity {
     EditText input_code1, input_code2, input_code3, input_code4, input_code5, input_code6;
     TextView phone_text, resendOtp;
     ProgressBar progressBar;
@@ -40,9 +40,8 @@ public class OtpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otp);
-
-        phone_text = findViewById(R.id.phone_text);
+        setContentView(R.layout.activity_otp_login);
+        phone_text = findViewById(R.id.phone_text_login);
         phone_text.setText(getIntent().getStringExtra("telephone"));
 
         input_code1 = findViewById(R.id.input_code1);
@@ -53,10 +52,9 @@ public class OtpActivity extends AppCompatActivity {
         input_code6 = findViewById(R.id.input_code6);
         setupOtpInputs();
 
-        resendOtp = findViewById(R.id.resendopt);
-
-        progressBar = findViewById(R.id.progressBar);
-        verifBtn = findViewById(R.id.btn_verif);
+        resendOtp = findViewById(R.id.resend_otp_login);
+        progressBar = findViewById(R.id.progressBar_otp_login);
+        verifBtn = findViewById(R.id.btn_verif_login);
         verificationId = getIntent().getStringExtra("verificationId");
 
         db = FirebaseFirestore.getInstance();
@@ -69,7 +67,7 @@ public class OtpActivity extends AppCompatActivity {
                 checkField(input_code4);
                 checkField(input_code5);
                 checkField(input_code6);
-                
+
                 if(valid){
                     String code = input_code1.getText().toString()+input_code2.getText().toString()+input_code3.getText().toString()+
                             input_code4.getText().toString()+input_code5.getText().toString()+input_code6.getText().toString();
@@ -82,7 +80,7 @@ public class OtpActivity extends AppCompatActivity {
                     }
 
                 }else{
-                    Toast.makeText(OtpActivity.this, "Veuillez entrer un code valide", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OtpLoginActivity.this, "Veuillez entrer un code valide", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -93,7 +91,7 @@ public class OtpActivity extends AppCompatActivity {
                 sendVerificationCode(getIntent().getStringExtra("telephone"));
             }
         });
-        
+
     }
 
     private void sendVerificationCode(String phoneNumber) {
@@ -118,14 +116,14 @@ public class OtpActivity extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            Toast.makeText(OtpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(OtpLoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onCodeSent(@NonNull String newVerificationId,
                                @NonNull PhoneAuthProvider.ForceResendingToken token) {
             verificationId = newVerificationId;
-            Toast.makeText(OtpActivity.this, "Code envoyé", Toast.LENGTH_SHORT).show();
+            Toast.makeText(OtpLoginActivity.this, "Code envoyé", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -234,29 +232,17 @@ public class OtpActivity extends AppCompatActivity {
 
     private void signinByCredentials(PhoneAuthCredential credential) {
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        Map<String, Object> userP = new HashMap<>();
-        userP.put("nom", getIntent().getStringExtra("nom"));
-        userP.put("prenom", getIntent().getStringExtra("prenom"));
-        userP.put("telephone", getIntent().getStringExtra("telephone"));
         fAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 verifBtn.setVisibility(View.VISIBLE);
                 if(task.isSuccessful()){
-                    FirebaseUser user = task.getResult().getUser();
-                    db.collection("Users").document(user.getUid()).set(userP).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                Toast.makeText(OtpActivity.this, "Vous êtes connecté", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), Accueil.class));
-                                finish();
-                            }
-                        }
-                    });
+                    Toast.makeText(OtpLoginActivity.this, "Vous êtes connecté", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), Accueil.class));
+                    finish();
                 }else {
-                    Toast.makeText(OtpActivity.this, "le code est invalide", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OtpLoginActivity.this, "le code est invalide", Toast.LENGTH_SHORT).show();
                 }
             }
         });

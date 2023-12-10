@@ -147,12 +147,14 @@ public class RDVActivity extends AppCompatActivity {
             intent.putExtra("immatriculation", immat.getText().toString());
             intent.putExtra("carId", getIntent().getStringExtra("carId"));
             startActivity(intent);
+            finish();
         });
 
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(RDVActivity.this, CarSpaceActivity.class));
+                finish();
             }
         });
 

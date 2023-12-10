@@ -40,22 +40,22 @@ public class ValidAddCar extends AppCompatActivity {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
-
-        Map<String, Object> car = new HashMap<>();
-        car.put("vin", getIntent().getStringExtra("vin"));
-        car.put("modele", getIntent().getStringExtra("modele"));
-        car.put("immatriculation", getIntent().getStringExtra("immatriculation"));
-        car.put("kilometrage", kilometrage.getText().toString());
-        car.put("user", currentUser.getUid());
         ajout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Map<String, Object> car = new HashMap<>();
+                car.put("vin", getIntent().getStringExtra("vin"));
+                car.put("modele", getIntent().getStringExtra("modele"));
+                car.put("immatriculation", getIntent().getStringExtra("immatriculation"));
+                car.put("kilometrage", kilometrage.getText().toString());
+                car.put("user", currentUser.getUid());
                 db.collection("cars").document().set(car).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(ValidAddCar.this, "Véhicule Ajouté", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), Accueil.class));
+                            finish();
                         }else {
                             Toast.makeText(ValidAddCar.this, "Ajout échoué", Toast.LENGTH_SHORT).show();
                         }

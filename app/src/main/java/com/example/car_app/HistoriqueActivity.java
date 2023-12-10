@@ -3,7 +3,10 @@ package com.example.car_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +26,7 @@ public class HistoriqueActivity extends AppCompatActivity {
     ListView lv;
     FirebaseFirestore db;
     RdvAdapter adapter;
-
+    Button retour_btn;
     String carId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,14 @@ public class HistoriqueActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
 
         getUserRdv(currentUser.getUid());
+
+        retour_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), CarSpaceActivity.class));
+                finish();
+            }
+        });
     }
 
     void getUserRdv(String userId){

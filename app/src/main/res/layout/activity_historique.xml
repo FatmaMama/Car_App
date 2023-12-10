@@ -73,4 +73,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_historique"
         android:layout_margin="20dp"
         android:padding="20dp"/>
+    <Button
+        android:id="@+id/retour_hist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lv_hist" />
 </androidx.constraintlayout.widget.ConstraintLayout>

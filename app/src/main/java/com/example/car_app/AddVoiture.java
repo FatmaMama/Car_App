@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,7 +50,10 @@ public class AddVoiture extends AppCompatActivity {
                                 intent.putExtra("vin", document.getData().get("vin").toString());
                                 intent.putExtra("immatriculation", document.getData().get("immatriculation").toString());
                                 startActivity(intent);
+                                finish();
                             }
+                        } else {
+                            Toast.makeText(AddVoiture.this, "Vérifier votre VIN", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

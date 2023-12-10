@@ -33,6 +33,7 @@ public class CarSpaceActivity extends AppCompatActivity {
                 intent.putExtra("immatriculation", immat.getText().toString());
                 intent.putExtra("carId", getIntent().getStringExtra("carId"));
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -44,6 +45,7 @@ public class CarSpaceActivity extends AppCompatActivity {
                 intent.putExtra("immatriculation", immat.getText().toString());
                 intent.putExtra("carId", getIntent().getStringExtra("carId"));
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -58,6 +60,7 @@ public class CarSpaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), Accueil.class));
+                finish();
             }
         });
 

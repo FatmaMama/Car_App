@@ -98,12 +98,14 @@ public class DateRdvActivity extends AppCompatActivity {
             intent.putExtra("heure", ch);
             intent.putExtra("carId", getIntent().getStringExtra("carId"));
             startActivity(intent);
+            finish();
         });
 
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DateRdvActivity.this, ChoixAgence.class));
+                finish();
             }
         });
     }

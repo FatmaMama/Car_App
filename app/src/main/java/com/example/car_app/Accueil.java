@@ -24,19 +24,22 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class Accueil extends AppCompatActivity {
-    Button ajt_btn, carDetails_btn ;
+    Button ajt_btn, logout_btn ;
     ListView lv;
     CarAdapter adapter;
     FirebaseFirestore db;
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
 
-        ajt_btn=findViewById(R.id.ajt_btn);
+        ajt_btn = findViewById(R.id.ajt_btn);
+        logout_btn = findViewById(R.id.logout_btn);
         lv = findViewById(R.id.lv);
 
         db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         ArrayList<Car> cars = new ArrayList<>();
@@ -45,6 +48,16 @@ public class Accueil extends AppCompatActivity {
         lv.setAdapter(adapter);
 
         getUserCars(currentUser.getUid());
+
+        logout_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.signOut();
+                startActivity(new Intent(Accueil.this, LoginActivity.class));
+                finish();
+            }
+        });
+
         ajt_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +75,7 @@ public class Accueil extends AppCompatActivity {
                             intent.putExtra("immatriculation", car.getImmatriculation());
                             intent.putExtra("carId", car.getId());
                             startActivity(intent);
-                /*Log.i("TAG", "onItemClick: "+adapter.getCount());*/
+                            finish();
             }
         });
     }

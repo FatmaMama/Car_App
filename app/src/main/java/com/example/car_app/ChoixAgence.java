@@ -54,6 +54,7 @@ public class ChoixAgence extends AppCompatActivity implements OnMapReadyCallback
 
         retour.setOnClickListener(v->{
             startActivity(new Intent(ChoixAgence.this,RDVActivity.class));
+            finish();
         });
 
         valider.setOnClickListener(v->{
@@ -65,6 +66,7 @@ public class ChoixAgence extends AppCompatActivity implements OnMapReadyCallback
             intent.putExtra("immatriculation", immat.getText().toString());
             intent.putExtra("carId", getIntent().getStringExtra("carId"));
             startActivity(intent);
+            finish();
         });
 
 

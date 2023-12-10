@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(auth)
                         .setPhoneNumber("+216"+phoneNumber)       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setTimeout(30L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(this)                 // (optional) Activity for callback binding
                         // If no activity is passed, reCAPTCHA verification can not be used.
                         .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
@@ -93,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
             intent.putExtra("telephone", telephone.getText().toString());
             intent.putExtra("verificationId", verificationId);
             startActivity(intent);
-
+            finish();
         }
     };
 
@@ -106,14 +106,4 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return valid;
     }
-
-    /*@Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(currentUser!=null){
-            startActivity(new Intent(RegisterActivity.this, Accueil.class));
-            finish();
-        }
-    }*/
 }
