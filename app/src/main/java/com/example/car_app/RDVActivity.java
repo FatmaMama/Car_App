@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -23,12 +25,14 @@ import java.util.stream.Collectors;
 
 public class RDVActivity extends AppCompatActivity {
 
-    Button serv1,serv2,serv3,serv4,valider;
+    Button serv1,serv2,serv3,serv4,valider, retour;
     int value = 0;
     String nom,desc;
     List<Number> agence;
     FirebaseFirestore fStore;
     String result ;
+
+    TextView modele, immat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,14 @@ public class RDVActivity extends AppCompatActivity {
         serv3=findViewById(R.id.serv3);
         serv4=findViewById(R.id.serv4);
         valider=findViewById(R.id.validerserv);
+        retour = findViewById(R.id.retour_btn);
+
+
+        modele = findViewById(R.id.modele);
+        immat = findViewById(R.id.immat);
+
+        modele.setText(getIntent().getStringExtra("modele"));
+        immat.setText(getIntent().getStringExtra("immatriculation"));
 
         fStore = FirebaseFirestore.getInstance();
 
@@ -131,10 +143,18 @@ public class RDVActivity extends AppCompatActivity {
             Intent intent = new Intent(RDVActivity.this,ChoixAgence.class);
             intent.putExtra("Nom",nom);
             intent.putExtra("AgenceList", result);
+            intent.putExtra("modele", modele.getText().toString());
+            intent.putExtra("immatriculation", immat.getText().toString());
+            intent.putExtra("carId", getIntent().getStringExtra("carId"));
             startActivity(intent);
         });
 
-
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RDVActivity.this, CarSpaceActivity.class));
+            }
+        });
 
     }
 

@@ -54,7 +54,7 @@ public class CarAdapter extends BaseAdapter {
         Car car = getItem(i);
 
         tv_modele.setText(car.getModele());
-        tv_immat.setText(car.getImmat());
+        tv_immat.setText(car.getImmatriculation());
 
         return v;
     }

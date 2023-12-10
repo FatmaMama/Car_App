@@ -9,10 +9,10 @@
 
 
     <TextView
-        android:id="@+id/matricule"
+        android:id="@+id/modele_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Matricule"
+        android:text="Modele"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,47 +23,43 @@
         app:layout_constraintVertical_bias="0.038" />
 
     <TextView
-        android:id="@+id/modele"
+        android:id="@+id/immat_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Modèle / Version"
+        android:text="Immatriculation"
         android:textColor="@color/black"
-
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintTop_toBottomOf="@+id/modele_dt" />
 
     <TextView
-        android:id="@+id/service"
+        android:id="@+id/service_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
         android:text="Service"
         android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toEndOf="@+id/modele_dt"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/agence"
-        android:layout_width="wrap_content"
+        android:id="@+id/agence_dt"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Agence"
+        android:gravity="end"
         android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.877"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintHorizontal_bias="0.747"
+        app:layout_constraintStart_toEndOf="@+id/immat_dt"
+        app:layout_constraintTop_toBottomOf="@+id/service_dt" />
 
     <TextView
         android:id="@+id/textView8"
@@ -74,6 +70,7 @@
         android:text="Réserver Un Rendez-Vous"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -98,7 +95,7 @@
         android:text="Date : "
         android:textColor="@color/black"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/retour"
+        app:layout_constraintBottom_toTopOf="@+id/retour_dt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent" />
@@ -111,13 +108,13 @@
         android:text="date choisie"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/valider"
+        app:layout_constraintBottom_toTopOf="@+id/valider_dt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.232"
         app:layout_constraintStart_toEndOf="@+id/date" />
 
     <Button
-        android:id="@+id/valider"
+        android:id="@+id/valider_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="144dp"
@@ -127,10 +124,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.652"
-        app:layout_constraintStart_toEndOf="@+id/retour" />
+        app:layout_constraintStart_toEndOf="@+id/retour_dt" />
 
     <Button
-        android:id="@+id/retour"
+        android:id="@+id/retour_dt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"

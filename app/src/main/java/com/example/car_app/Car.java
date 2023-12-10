@@ -19,7 +19,7 @@ public class Car implements Serializable {
         return modele;
     }
 
-    public String getImmat() {
+    public String getImmatriculation() {
         return immatriculation;
     }
 

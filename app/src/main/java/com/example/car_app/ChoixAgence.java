@@ -25,10 +25,10 @@ import java.util.List;
 
 public class ChoixAgence extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap myMap;
-    TextView agencefav,matricule,service ;
+    TextView agencefav,immat,modele,service ;
     Button retour,valider ;
 
-    String ag,nomservice;
+    String ag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +36,16 @@ public class ChoixAgence extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_choix_agence);
 
         agencefav=findViewById(R.id.agencefav);
-        matricule=findViewById(R.id.matricule);
-        service=findViewById(R.id.service);
-        retour=findViewById(R.id.retour);
-        valider=findViewById(R.id.valider);
+        modele = findViewById(R.id.modele_tv);
+        immat = findViewById(R.id.immat_tv);
+        service = findViewById(R.id.service_tv);
+        retour=findViewById(R.id.retour_ag);
+        valider=findViewById(R.id.valider_ag);
+
         Intent data = getIntent();
-        nomservice=data.getStringExtra("Nom");
-        service.setText(nomservice);
+        modele.setText(data.getStringExtra("modele"));
+        immat.setText(data.getStringExtra("immatriculation"));
+        service.setText(data.getStringExtra("Nom"));
         ag = data.getStringExtra("AgenceList");
 
 
@@ -52,11 +55,15 @@ public class ChoixAgence extends AppCompatActivity implements OnMapReadyCallback
         retour.setOnClickListener(v->{
             startActivity(new Intent(ChoixAgence.this,RDVActivity.class));
         });
+
         valider.setOnClickListener(v->{
             String fav = agencefav.getText().toString();
             Intent intent = new Intent(ChoixAgence.this,DateRdvActivity.class);
-            intent.putExtra("Nom",nomservice);
+            intent.putExtra("Nom",service.getText().toString());
             intent.putExtra("Agence", fav);
+            intent.putExtra("modele", modele.getText().toString());
+            intent.putExtra("immatriculation", immat.getText().toString());
+            intent.putExtra("carId", getIntent().getStringExtra("carId"));
             startActivity(intent);
         });
 

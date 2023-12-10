@@ -57,10 +57,10 @@ public class Accueil extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Car car = adapter.getItem(position);
-                            Intent intent = new Intent(getBaseContext(), RDVActivity.class);
+                            Intent intent = new Intent(getBaseContext(), CarSpaceActivity.class);
                             intent.putExtra("modele", car.getModele());
-                            intent.putExtra("immatriculation", car.getImmat());
-                            intent.putExtra("id", car.getId());
+                            intent.putExtra("immatriculation", car.getImmatriculation());
+                            intent.putExtra("carId", car.getId());
                             startActivity(intent);
                 /*Log.i("TAG", "onItemClick: "+adapter.getCount());*/
             }

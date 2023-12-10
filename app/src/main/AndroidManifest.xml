@@ -19,9 +19,15 @@
         android:theme="@style/Theme.Car_App"
         tools:targetApi="31">
         <activity
+            android:name=".CarSpaceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoriqueActivity"
+            android:exported="false" />
+        <activity
             android:name=".ValidRDV"
             android:exported="false" />
-      <activity
+        <activity
             android:name=".OtpActivity"
             android:exported="false" />
         <activity
@@ -51,7 +57,6 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

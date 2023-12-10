@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import java.util.Locale;
 public class DateRdvActivity extends AppCompatActivity {
 
     CalendarView calendarView;
-    TextView datechoisi,servicechoisi,agencefav;
+    TextView datechoisi,modele, immat,service,agence;
     Button valider,retour,time1,time2,time3,time4 ;
     Calendar calendar;
     String resultat ;
@@ -28,22 +29,22 @@ public class DateRdvActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_rdv);
 
-        retour=findViewById(R.id.retour);
-        valider=findViewById(R.id.valider);
+        retour=findViewById(R.id.retour_dt);
+        valider=findViewById(R.id.valider_dt);
         time1=findViewById(R.id.time1);
         time2=findViewById(R.id.time2);
         time3=findViewById(R.id.time3);
         time4=findViewById(R.id.time4);
-        agencefav=findViewById(R.id.agence);
-        servicechoisi=findViewById(R.id.service);
-
+        agence=findViewById(R.id.agence_dt);
+        service=findViewById(R.id.service_dt);
+        modele = findViewById(R.id.modele_dt);
+        immat = findViewById(R.id.immat_dt);
 
         Intent data = getIntent();
-        String service = data.getStringExtra("Nom");
-        String agence = data.getStringExtra("Agence");
-
-        servicechoisi.setText(service);
-        agencefav.setText(agence);
+        modele.setText(data.getStringExtra("modele"));
+        immat.setText(data.getStringExtra("immatriculation"));
+        service.setText(data.getStringExtra("Nom"));
+        agence.setText(data.getStringExtra("Agence"));
 
 
         calendarView=findViewById(R.id.calendar);
@@ -89,10 +90,21 @@ public class DateRdvActivity extends AppCompatActivity {
 
         valider.setOnClickListener(v->{
             Intent intent = new Intent(DateRdvActivity.this,ValidRDV.class);
-            intent.putExtra("Nom",service);
-            intent.putExtra("Agence", agence);
-            intent.putExtra("Time", dateTime);
+            intent.putExtra("service",service.getText().toString());
+            intent.putExtra("agence", agence.getText().toString());
+            intent.putExtra("modele",modele.getText().toString());
+            intent.putExtra("immatriculation", immat.getText().toString());
+            intent.putExtra("date", dateTime);
+            intent.putExtra("heure", ch);
+            intent.putExtra("carId", getIntent().getStringExtra("carId"));
             startActivity(intent);
+        });
+
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DateRdvActivity.this, ChoixAgence.class));
+            }
         });
     }
 

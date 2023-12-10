@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgr"
     tools:context=".RDVActivity">
 
     <TextView
-        android:id="@+id/matricule"
+        android:id="@+id/modele"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Matricule"
+        android:text="Modele"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
@@ -21,21 +23,23 @@
         app:layout_constraintVertical_bias="0.05" />
 
     <TextView
-        android:id="@+id/modele"
+        android:id="@+id/immat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Modèle / Version"
+        android:text="Immatriculation"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.131" />
 
-    <ImageView
-        android:id="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/modele"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!--<ImageView
+        android:id="@+id/delete_btn"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/baseline_delete_24"
@@ -44,112 +48,136 @@
         app:layout_constraintHorizontal_bias="0.851"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
-
-    <Button
-        android:id="@+id/historiquebtn"
+        app:layout_constraintVertical_bias="0.052" />
+-->
+    <!--<Button
+        android:id="@+id/historique_btn"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:text="Historique"
         android:backgroundTint="#1E56C9"
+        android:text="Historique"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintVertical_bias="0.189" />
 
     <Button
-        android:id="@+id/rdvbtn"
-        android:layout_width="100dp"
+        android:id="@+id/rdv_btn"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:backgroundTint="#1E56C9"
         android:text="RDV"
-        android:backgroundTint="#1E56C9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintVertical_bias="0.189" />
 
     <Button
-        android:id="@+id/Reclamationbtn"
-        android:layout_width="100dp"
+        android:id="@+id/reclamation_btn"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:text="Réclamation"
         android:backgroundTint="#1E56C9"
+        android:text="Réclamation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintVertical_bias="0.189" />
+-->
+
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/carkialogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintStart_toEndOf="@+id/modele"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Service"
+        android:text="Services"
         android:textColor="@color/black"
         android:textSize="45sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42" />
+        app:layout_constraintVertical_bias="0.295" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choisissez parmi les opérations listées ci-dessous."
+        android:textSize="20sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
         android:id="@+id/serv4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vidange"
         android:backgroundTint="#1E56C9"
+        android:text="Vidange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.673" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
         android:id="@+id/serv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Diagnostic"
         android:backgroundTint="#1E56C9"
+        android:text="Diagnostic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
         android:id="@+id/serv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Changement de Filtres"
         android:backgroundTint="#1E56C9"
+        android:text="Changement de Filtres"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintHorizontal_bias="0.137"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.592" />
 
     <Button
         android:id="@+id/serv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contrôle"
         android:backgroundTint="#1E56C9"
+        android:text="Contrôle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.345"
+        app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.673" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
         android:id="@+id/validerserv"
@@ -159,8 +187,20 @@
         android:text="Valider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.941" />
+
+    <Button
+        android:id="@+id/retour_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/green"
+        android:text="Retour"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/validerserv"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
